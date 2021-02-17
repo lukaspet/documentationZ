@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Modifica Parte 2</h4>
+</div>
+<form [formGroup]="editPart3Form" (ngSubmit)="onSubmit()" novalidate>
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-group">
+        <label class="col-md-4">Nome </label>
+        <input type="text" class="form-control" formControlName="nomeParte3" required />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="editPart3Form.pristine || editPart3Form.invalid" > Modifica </button>
+    <button class="btn btn-outline-dark" (click)="activeModal.dismiss('Close clicked')"> Chiudi </button>
+  </div>
+</form>

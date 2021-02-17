@@ -1,0 +1,17 @@
+<div class="modal-header" >
+  <h4 class="modal-title">Modifica Ruolo</h4>
+</div>
+<form [formGroup]="editRoleForm" (ngSubmit)="onSubmit()" novalidate *ngIf="isAdmin">
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-group">
+        <label class="col-md-4">Nome </label>
+        <input type="text" class="form-control" formControlName="name" required />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="editRoleForm.pristine || editRoleForm.invalid" > Modifica </button>
+    <button class="btn btn-outline-dark" (click)="activeModal.dismiss('Close clicked')"> Chiudi </button>
+  </div>
+</form>

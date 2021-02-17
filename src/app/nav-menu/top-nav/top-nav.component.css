@@ -1,0 +1,60 @@
+h3 {
+  color: white;
+}
+.fa-user{
+  color:  white;
+}
+.btn:hover .fa-user {
+  color: #8f8786;
+}
+.btn:hover .button-text{
+  color: #8f8786;
+}
+.fa-home{
+  color:  white;
+}
+.btn:hover .fa-home{
+  color: #8f8786;
+}
+.fa-sign-in-alt{
+  color:  white;
+}
+.btn:hover .fa-sign-in-alt{
+  color: #8f8786;
+}
+.navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 25px;
+}
+.button-text {
+  margin-right: 5px;
+}
+@media (max-width: 575px) {
+  .button-text {
+      display: none;
+  }
+}
+@media (min-width: 575px) {
+  .drop-user {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .short-text {
+    display: inline-flex;
+  }
+  .long-text {
+    display: none;
+  }
+}
+@media (min-width: 400px) {
+  .short-text {
+    display: none;
+  }
+  .long-text {
+    display: inline-flex;
+  }
+}
+

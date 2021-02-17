@@ -1,0 +1,18 @@
+<div class="modal-header"  *ngIf="isAdmin">
+  <h4 class="modal-title">Modifica Società</h4>
+</div>
+<form [formGroup]="editCompanyForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-group">
+        <label class="col-md-4">Nome </label>
+        <input type="text" class="form-control" formControlName="nomeSocieta" required />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="editCompanyForm.pristine || editCompanyForm.invalid" > Modifica </button>
+    <button class="btn btn-outline-dark" (click)="activeModal.dismiss('Close clicked')"> Chiudi </button>
+  </div>
+</form>
+

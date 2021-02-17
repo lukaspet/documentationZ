@@ -1,0 +1,13 @@
+.container {
+  /* background: rgb(214, 212, 212); */
+
+  padding-top: 100px;
+
+  align-items: center;
+  justify-content: center;
+  /* padding-left: -220px; */
+}
+.error-actions {
+  text-align: center;
+}
+

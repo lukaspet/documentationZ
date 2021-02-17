@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h4 class="modal-title">Modifica Categoria</h4>
+</div>
+<form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-group">
+        <label class="col-md-4">Nome </label>
+        <input type="text" class="form-control" formControlName="nomeCategoria" required />
+      </div>
+      <div class="form-group">
+          <label class="col-md-4">Descrizione </label>
+          <textarea class="form-control" rows = 7 cols = "5" formControlName="descrizioneCategoria" ></textarea>
+        </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="editCategoryForm.pristine || editCategoryForm.invalid" > Modifica </button>
+    <button class="btn btn-outline-dark" (click)="activeModal.dismiss('Close clicked')"> Chiudi </button>
+  </div>
+</form>
+

@@ -1,0 +1,135 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header text-white">
+          <div class="d-flex">
+            <!-- <div class="p-2"> -->
+              <h5 style="margin-bottom: 0px; padding:0px">Documenti</h5>
+            <!-- </div> -->
+            <!-- <div class="col-md-4 mx-auto" style="float: right;"> -->
+              <!-- <div class="ml-auto"> -->
+              <button class=" ml-auto btn btn-sm btn-outline-light" routerLink="create/" style="height: 24px;"><div style="margin-top: -4px;">Nuovo Documento</div></button>
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="form-inline" style="float: right;">
+            <button class="btn btn-sm btn-outline-light" routerLink="create/">Nuovo Documento</button>
+          </div> -->
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="searchDocumentForm" class="form-inline" novalidate style="margin-bottom: 0.5cm;">
+            <div class="form-row">
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" formControlName="societaId" #societaId>
+                    <option value="" selected >Scegli Società </option>
+                    <option *ngFor="let company of companies" [value]="company.id">{{company.nomeSocieta}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" formControlName="categoriaId" (change)="onChangeCategory($event.target.value)">
+                    <option value="" selected >Scegli Categoria </option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.nomeCategoria}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" formControlName="sottocategoriaId">
+                    <option value="" selected >Scegli Sottocategoria </option>
+                    <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{subcategory.nomeSottocategoria}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" formControlName="ufficioId">
+                    <option value="" selected >Scegli Ufficio </option>
+                    <option *ngFor="let office of offices" [value]="office.id">{{office.nomeUfficio}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" formControlName="parte2Id">
+                    <option value="" selected >Scegli Parte2 </option>
+                    <option *ngFor="let onePart2 of part2" [value]="onePart2.id">{{onePart2.nomeParte2}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" formControlName="parte3Id">
+                    <option value="" selected >Scegli Parte3 </option>
+                    <option *ngFor = "let onePart3 of part3 " [value] = "onePart3.id">{{onePart3.nomeParte3}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <input size="21" type="text" formControlName="dataDocumento" placeholder="Scegli data Documento" class="form-control form-control-sm" bsDaterangepicker [bsConfig]="{rangeInputFormat: 'DD-MM-YYYY', containerClass:'theme-dark-blue'}" >
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <input type="text" formControlName="searchText" placeholder="Cerca in Descrizione" class="search-form-control form-control form-control-sm" (input)="filter()">
+                  <!-- [(ngModel)]="searchText" -->
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <button class="btn btn-outline-primary btn-sm" (click)="filter()">Filtra</button>
+              </div>
+              <div class="col-md-auto">
+                <button class="btn btn-outline-danger btn-sm" (click)="reset()">Resetta</button>
+              </div>
+            </div>
+          </form>
+          <table class="table table-bordered table-hover">
+            <thead class="alert alert-info bordered">
+              <tr>
+                <th scope="col" class="d-none d-sm-none d-md-table-cell">Società</th>
+                <th>Ufficio</th>
+                <th>Descrizione</th>
+                <th>Data Documento</th>
+                <th class="text-center fixed-width">Azioni</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let document of documents | paginate: { itemsPerPage: 20, currentPage: currentPage, totalItems: totalCount}">
+                <td scope="col" class="d-none d-sm-none d-md-table-cell"> {{ companyName(document) }} </td>
+                <td> {{ officeName(document) }} </td>
+                <td class="maxWidth"> {{ document.descrizioneDocumento }} </td>
+                <td> {{ document.dataDocumento | date: 'dd/MM/yyyy' }} </td>
+                <td class="text-center fixed-width">
+                  <div class="btn-group">
+                    <a *ngIf="isAdminOrOperator" routerLink="edit/{{ document.documentId }}" class="btn btn-outline-success "><i class="fas fa-edit"></i></a>
+                    <a routerLink="download/{{ document.documentId }}" class="btn btn-outline-primary "><i class="fas fa-download"></i></a>
+                    <a *ngIf="isAdminOrOperator" (click) = "open(deleteDocument)" class="btn btn-outline-danger text-danger"><i class="fas fa-trash-alt "></i></a>
+                    <ng-template #deleteDocument let-modal>
+                      <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Elimina Documento</h4>
+                      </div>
+                      <div class="modal-body">
+                        <span class="text-danger">Tutti i file saranno eliminati!</span>
+                        <p>Sei sicuro?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annulla</button>
+                        <button type="button" class="btn btn-danger" (click)="closeModal(document)">Ok</button>
+                      </div>
+                    </ng-template>
+                  </div>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+

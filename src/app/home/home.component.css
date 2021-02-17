@@ -1,0 +1,16 @@
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  max-width: 500px;
+}
+body {
+  /* margin-left: -220px; */
+  margin-top: 20px;
+}
+body.hidden {
+  margin-left: 0px;
+  margin-top: 20px;
+  transition: margin-left 0s;
+}

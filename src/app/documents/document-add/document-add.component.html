@@ -1,0 +1,157 @@
+<ngx-spinner type="pacman"> <p style="font-size: 20px; color: white">Loading...</p></ngx-spinner>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card" style="width: 100%;">
+        <h5 class="card-header text-white text-center">Inserimento Documento </h5>
+        <div class="card-body">
+          <form [formGroup]="documentForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-row">
+              <div class="col-md-4">
+                <div class="form-group">
+                <label class="col"><b>Società </b></label>
+                <select class="form-control" formControlName="societaId" #societaId>
+                <option hidden value="" disabled selected >Scegli Società </option>
+                <option *ngFor="let company of companies" [value]="company.id">{{company.nomeSocieta}}</option>
+                </select>
+            </div>
+            <div *ngIf="documentForm.controls['societaId'].invalid && (documentForm.controls['societaId'].dirty || documentForm.controls['societaId'].touched)" class="alert alert-danger">
+              <div *ngIf="documentForm.controls['societaId'].errors['required']">
+                Società e obbligatoria.
+              </div>
+            </div>
+              </div>
+              <div class="col-md-4">
+            <div class="form-group">
+               <label class="col"><b>Categoria </b></label>
+              <select class="form-control" formControlName="categoriaId" (change)="onChangeCategory($event.target.value)" #categoriaId>
+                <option hidden value="" disabled selected >Scegli Categoria </option>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.nomeCategoria}}</option>
+               </select>
+            </div>
+            <div *ngIf="documentForm.controls['categoriaId'].invalid && (documentForm.controls['categoriaId'].dirty || documentForm.controls['categoriaId'].touched)" class="alert alert-danger">
+              <div *ngIf="documentForm.controls['categoriaId'].errors['required']">
+                Categoria e obbligatoria.
+              </div>
+            </div>
+          </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="col"><b>Sottocattegoria </b></label>
+                  <select class="form-control" formControlName="sottocategoriaId" #sottocategoriaId>
+                    <option hidden value="" disabled selected >Scegli Sotto Categoria </option>
+                    <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{subcategory.nomeSottocategoria}}</option>
+                  </select>
+                </div>
+                <div *ngIf="documentForm.controls['sottocategoriaId'].invalid && (documentForm.controls['sottocategoriaId'].dirty || documentForm.controls['sottocategoriaId'].touched)" class="alert alert-danger">
+                  <div *ngIf="documentForm.controls['sottocategoriaId'].errors['required']">
+                    Sottocategoria e obbligatoria.
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="form-row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="col"><b>Ufficio </b></label>
+                  <select class="form-control" formControlName="ufficioId" #ufficioId>
+                    <option hidden value="" disabled selected >Scegli Ufficio </option>
+                    <option *ngFor="let office of offices" [value]="office.id">{{office.nomeUfficio}}</option>
+                  </select>
+                </div>
+                <div *ngIf="documentForm.controls['ufficioId'].invalid && (documentForm.controls['ufficioId'].dirty || documentForm.controls['ufficioId'].touched)" class="alert alert-danger">
+                  <div *ngIf="documentForm.controls['ufficioId'].errors['required']">
+                    Ufficio e obbligatorio.
+                  </div>
+                </div>
+              </div>
+                <div class="col-md-4">
+                <div class="form-group">
+                  <label class="col"><b>Parte 2 </b></label>
+                  <select class="form-control" formControlName="parte2Id">
+                    <option value="" selected >Scegli Parte 2 </option>
+                    <option *ngFor="let onePart2 of part2" [value]="onePart2.id">{{onePart2.nomeParte2}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="col"><b>Parte 3 </b></label>
+                  <select class="form-control" formControlName="parte3Id">
+                    <option value="" selected >Scegli Parte 3 </option>
+                    <option *ngFor="let onePart3 of part3" [value]="onePart3.id">{{onePart3.nomeParte3}}</option>
+                  </select>
+                </div>
+              </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="col"><b>Data Documento </b></label>
+                    <input type="text" formControlName="dataDocumento" placeholder="Scegli data Documento" class="form-control" #dataDocumento bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                </div>
+                <div *ngIf="documentForm.controls['dataDocumento'].invalid && (documentForm.controls['dataDocumento'].dirty || documentForm.controls['dataDocumento'].touched)" class="alert alert-danger">
+                 <div *ngIf="documentForm.controls['dataDocumento'].errors['required']">
+                   Data Documento e obbligatoria.
+                 </div>
+               </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="col"><b>Cartella </b></label>
+                    <input type="text" class="form-control" formControlName="cartella" #cartella placeholder="Inserisci Nome Cartella"/>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="col"><b>Posizione in cartella </b></label>
+                    <input type="text" class="form-control" formControlName="posizioneCartella" #posizioneCartella placeholder="Inserisci Posizione"/>
+                  </div>
+                </div>
+              </div>
+            <div class="form-group">
+              <label class="col-md-12"><b>Inserimento collegamento Documento </b></label>
+              <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+               <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)" formControlName="oneFile">
+              </div>
+            </div>
+            <div class="files-list" *ngFor="let f of singlefile;let i= index">
+              <p> {{ f.name }} </p>
+              <a (click)="deleteAttachment(i)" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+            </div>
+            <div class="form-group">
+              <label class="col-md-12"><b>Descrizione </b></label>
+              <textarea class="form-control" rows = "5" cols = "3" formControlName="descrizioneDocumento" #descrizioneDocumento style="font-size: 10pt"></textarea>
+            </div>
+            <div *ngIf="documentForm.controls['descrizioneDocumento'].invalid && (documentForm.controls['descrizioneDocumento'].dirty || documentForm.controls['descrizioneDocumento'].touched)" class="alert alert-danger">
+              <div *ngIf="documentForm.controls['descrizioneDocumento'].errors['required']">
+                Descrizione e obbligatoria.
+              </div>
+            </div>
+             <div class="form-group">
+              <label class="col-md-12"><b>Inserimento allegati </b></label>
+              <div class="uploadfilecontainer" (click)="fileInputFiles.click()" appDragDropFile (onFileDropped)="uploadFiles($event)">
+                <input hidden multiple type="file" #fileInputFiles (change)="uploadFiles($event.target.files)" formControlName="manyFiles">
+              </div>
+             </div>
+             <div  class="files-list" *ngFor="let file of files;let i= index">
+               <p> {{ file.name }} </p>
+               <a (click)="deleteAttachments(i)" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+             </div>
+             <div class="form-group">
+               <label class="col-md-12"><b>Note </b></label>
+               <textarea class="form-control" rows = "3" cols = "3" formControlName="note" style="font-size: 10pt"></textarea>
+             </div>
+             <div class="form-group">
+              <button type="submit" class="btn btn-outline-primary" [disabled]="documentForm.pristine || documentForm.invalid" style="margin-right: 0.2cm;">
+                Crea Documento
+              </button>
+              <button type="button" class="btn btn-outline-danger" (click)="goBack()">Annulla </button>
+             </div>
+           </form>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+

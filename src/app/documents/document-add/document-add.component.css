@@ -1,0 +1,54 @@
+.uploadfilecontainer {
+  background-image: url("../../../assets/cloud-2044823_960_720.png");
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: center;
+  height: 80px;
+  width: 100%;
+  margin: 20px auto;
+  border: 2px dashed #0275d8;
+  border-radius: 10px;
+}
+.uploadfilecontainer:hover {
+  cursor: pointer;
+  background-color: #9ecbec !important;
+  opacity: 0.8;
+}
+.files-list {
+  display: flex;
+  justify-content: space-between;
+  /*width: 80%;*/
+  margin: 10px auto;
+  background: #ffffff;
+  border: 1px dashed;
+  border-radius: 12px;
+  padding: 5px;
+  color: #1c8adb;
+}
+.files-list .delete-file {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.files-list .delete-file img{
+  width:30px;
+}
+.card-header {
+  background-color:  #0275d8;
+}
+.fa-trash-alt{
+  color: red;
+}
+.btn-outline-danger:hover .fa-trash-alt{
+  color: white;
+}
+.textarea {
+  font-size: 6px;
+}
+button[type=submit]:disabled {
+  cursor: not-allowed!important;
+}
+.btn-outline-primary:disabled {
+  color: grey;
+  border-color: grey;
+}

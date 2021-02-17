@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header text-white">Sottocategoria </h5>
+        <div class="card-body p-3">
+          <button class="btn btn-sm btn-outline-primary" (click)="openAddSubcategory()" style="margin-bottom: 0.5cm;">Inserisci nuova</button>
+          <table class="table table-bordered">
+            <thead class="alert alert-info bordered">
+              <tr>
+                <th [class.active] = "order === 'nomeCategoria'" (click)="setOrder('nomeCategoria')">
+                  Categoria
+                  <span [hidden] = "reverse" class="fa fa-caret-down"></span> <span [hidden] = "!reverse" class="fa fa-caret-up"></span></th>
+                <th [class.active] = "order === 'nomeSottocategoria'" (click)="setOrder('nomeSottocategoria')">
+                  Sottocategoria
+                  <span [hidden] = "reverse" class="fa fa-caret-down"> </span> <span [hidden] = "!reverse" class="fa fa-caret-up"></span></th>
+                <th>Descrizione </th>
+                <th class="text-center fixed-width" colspan="2">Azioni</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let subcategory of subcategoriesHelper | orderBy: order:reverse:true">
+                <td> {{ subcategory.nomeCategoria }} </td>
+                <td>{{ subcategory.nomeSottocategoria }}</td>
+                <td>{{ subcategory.descrizioneSottocategoria }}</td>
+                <td class="text-center fixed-width">
+                  <div class="btn-group">
+                    <a (click) = "openEditSubcategory(subcategory)" class="btn btn-outline-success"><i class="fas fa-edit"></i></a>
+                    <a (click) = "open(deleteSubategory)" class="btn btn-outline-danger text-danger"><i class="fas fa-trash-alt"></i></a>
+                  <ng-template #deleteSubategory let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">Elimina Sottocategoria</h4>
+                    </div>
+                    <div class="modal-body">
+                      <span class="text-danger">Sottocategoria sara eliminata!</span>
+                      <p>Sei sicuro?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annulla</button>
+                      <button type="button" class="btn btn-danger" (click)="deleteSubcategory(subcategory)">Ok</button>
+                    </div>
+                  </ng-template>
+                  </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

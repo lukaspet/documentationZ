@@ -1,0 +1,17 @@
+.flex-container {
+  margin-left: 220px;
+  transition: margin-left .5s;
+}
+.flex-container.hidden {
+  margin-left: 0px;
+  transition: margin-left .5s;
+}
+@media (max-width: 860px) {
+  .flex-container {
+      margin-left: 0px;
+      transition: margin-left .5s;
+  }
+}
+.main{
+  padding-top: 80px;
+}

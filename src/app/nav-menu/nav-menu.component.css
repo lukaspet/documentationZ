@@ -1,0 +1,84 @@
+
+/* Keep the nav menu independent of scrolling and on top of other items */
+:host {
+  background: #343a40;
+}
+
+#sidebar {
+min-width: 200px;
+max-width: 200px;
+min-height: 100vh;
+color: #fff;
+transition: all 0.3s;
+font-weight: 600;
+font-size: 1rem;
+line-height: 1.5;
+padding-top: 60px;
+position: fixed;
+top: 0;
+z-index: 1;
+}
+.navbar-brand{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  left: 0;
+}
+
+#sidebar.hidden {
+  margin-left: -215px;
+}
+a[data-toggle="collapse"] {
+  position: relative;
+}
+/* @media (max-width: 860px) {
+  #sidebar {
+      margin-left: -200px;
+      transition: margin-left .5s;
+  }
+  #sidebar.hidden {
+      margin-left: 0;
+      transition: margin-left .5s;
+  }
+} */
+.dropdown-menu {
+  background-color: #343a40;
+  width: 100%;
+  border: none;
+  color:rgb(255, 255, 255, 0.5);
+  /* color: rgb(146, 145, 145); */
+  left: -5px !important;
+}
+form a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+form a.active {
+  background-color: #343a40;
+  color: #fff;
+}
+.dropdown-item {
+  font-weight: 600;
+  font-size: 1rem;
+}
+a, a:hover, a:focus {
+  color: inherit;
+}
+#sidebar .sidebar-header {
+  padding: 20px;
+}
+
+#sidebar ul li a {
+padding: 15px;
+display: block;
+width: 100%;
+}
+#sidebar ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+hr {
+border-top: 1px solid solid #fff;;
+margin-top: 0;
+}
+i {
+  padding-right: 10px;
+}

@@ -1,0 +1,73 @@
+<div class="modal-header">
+  <h4 class="modal-title">Nuovo Utente</h4>
+</div>
+<form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="form-group">
+        <label for="username">Nome</label>
+        <input type="text" formControlName="fullName" placeholder="Nome" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" />
+        <div *ngIf="f.fullName.errors" class="invalid-feedback">
+          <div *ngIf="f.fullName.errors.required">
+            Nome e obbligatorio
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+    <label for="username">Ruolo</label>
+    <select formControlName="roleId" placeholder="Ruolo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.roleId.errors }">
+      <option *ngFor="let role of roles" [ngValue]="role.id">{{role.name}}</option>
+    </select>
+    <div *ngIf="f.roleId.errors" class="invalid-feedback">
+        <div *ngIf="f.roleId.errors.required">
+          Ruolo e obbligatorio
+        </div>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="username">Email</label>
+      <input type="text" formControlName="email" placeholder="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">
+            Email e obbligatorio
+          </div>
+          <div *ngIf="f.email.errors.email">
+            Entra email valida
+        </div >
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" placeholder="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+      <div *ngIf="f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">
+          Password e obbligatorio
+        </div>
+        <div *ngIf="f.password.errors.minlength">
+          Password deve avere almeno 6 caratteri
+        </div>
+        <div *ngIf="f.password.errors.pattern">
+          Password deve avere una carattere maiuscolo un carattere speciale e un numero
+        </div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Conferma Password</label>
+    <input type="password" formControlName="confirmPassword" placeholder="Conferma Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+    <div *ngIf="f.confirmPassword.errors" class="invalid-feedback">
+      <div *ngIf="f.confirmPassword.errors.required">
+        Conferma e obbligatoria
+      </div>
+      <div *ngIf="f.confirmPassword.errors.mustMatch">
+        Conferma deve corrispondere
+      </div>
+    </div>
+</div>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary"> Crea Utente </button>
+    <button class="btn btn-outline-dark" (click)="activeModal.dismiss('Close clicked')"> Chiudi </button>
+  </div>
+</form>

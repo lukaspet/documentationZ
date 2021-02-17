@@ -1,0 +1,20 @@
+.not-allowed{
+  cursor: not-allowed! important;
+  pointer-events: none;
+ }
+ .card-header {
+   background-color:  #0275d8;
+ }
+ .btn-outline-danger:hover .fa-trash-alt{
+  color: white;
+}
+.fa-edit{
+  color: green;
+}
+.btn-outline-success:hover .fa-edit{
+  color: white;
+}
+td {
+  vertical-align: middle;
+  padding: 0.5rem;
+}

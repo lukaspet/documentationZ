@@ -1,0 +1,80 @@
+<div class="container" style="padding-top:40px;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <h5 class="card-header text-white">Scarica File del Documento </h5>
+        <div class="card-body">
+          <form [formGroup]="documentForm">
+            <div class="form-row">
+              <div class="col-md-4">
+              <input type="text" class="form-control form-col"  formControlName="societaId" [attr.disabled]="true"/>
+            </div>
+            <div class="col-md-4">
+               <input type="text" class="form-control form-col"  formControlName="categoriaId" [attr.disabled]="true"/>
+              </div>
+              <div class="col-md-4">
+               <input type="text" class="form-control"  formControlName="sottocategoriaId" [attr.disabled]="true"/>
+              </div>
+            </div>
+              <div class="form-row">
+                <div class="col-md-4">
+                  <input type="text" class="form-control"  formControlName="ufficioId" [attr.disabled]="true"/>
+                 </div>
+              <div class="col-md-4">
+               <input type="text" class="form-control" formControlName="parte2Id" [attr.disabled]="true"/>
+              </div>
+              <div class="col-md-4">
+               <input type="text" class="form-control" formControlName="parte3Id" [attr.disabled]="true"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4">
+                 <input type="text" formControlName="dataDocumento" class="form-control" [attr.disabled]="true">
+                </div>
+              <div class="col-md-4">
+               <input type="text" class="form-control" formControlName="cartella" [attr.disabled]="true"/>
+              </div>
+              <div class="col-md-4">
+               <input type="text" class="form-control" formControlName="posizioneCartella" [attr.disabled]="true"/>
+              </div>
+            </div>
+            <div class="form-row">
+            <div class="col-md-12">
+              <input type="text" formControlName="dataArchivio" class="form-control" [attr.disabled]="true">
+            </div>
+          </div>
+            <div class="form-row">
+              <div class="col-md-12">
+                <textarea class="form-control" formControlName="descrizioneDocumento" #descrizioneDocumento [attr.disabled]="true"></textarea>
+             </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-12">
+              <textarea class="form-control" formControlName="note" [attr.disabled]="true"></textarea>
+            </div>
+            </div>
+            <label class="form-row" style="color:red;margin-left: 6px;margin-top: 30px;">Collegamento Documento </label>
+            <div  class="files-list" *ngFor="let f of docFile;let i= index">
+              <p> {{ f.fileName }} </p>
+              <div class="btn-group">
+                <a (click) = "viewFile(f)" class="btn btn-outline-success"><i class="far fa-eye"></i></a>
+                <a (click) = "downloadFile(f)" class="btn btn-outline-primary"><i class="fas fa-download"></i></a>
+              </div>
+            </div>
+             <div class="form-group">
+              <label class="form-row" style="color:red;margin-left: 6px;margin-top: 30px;">Allegati </label>
+              <div  class="files-list" *ngFor="let file of docFiles;let i= index">
+               <p> {{ file.fileName }} </p>
+               <div class="btn-group">
+                <a (click) = "viewFile(file)" class="btn btn-outline-success"><i class="far fa-eye"></i></a>
+                <a (click) = "downloadFile(file)" class="btn btn-outline-primary"><i class="fas fa-download"></i></a>
+              </div>
+             </div>
+             </div>
+             <a [routerLink]="['/documents']" class="btn btn-outline-secondary" style="margin-left:5px">Ritorna</a>
+           </form>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>

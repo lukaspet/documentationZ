@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+          <h5 class="card-header text-white">
+            Parte 2
+            <div class="form-inline">
+              <input type="text" placeholder="Cerca Parte2" class="form-control form-control-sm" [(ngModel)]="searchText">
+            </div>
+          </h5>
+
+        <div class="card-body p-3">
+          <button class="btn btn-sm btn-outline-primary" (click)="openAddPart2()" style="margin-bottom: 0.5cm;">Inserisci nuovo</button>
+            <table class="table table-bordered">
+                <thead class="alert alert-info bordered">
+                <tr>
+                    <th [class.active] = "order === 'id'" (click)="setOrder('id')">
+                      Id
+                      <span [hidden] = "reverse" class="fa fa-caret-down"></span> <span [hidden] = "!reverse" class="fa fa-caret-up"></span></th>
+                    <th [class.active] = "order === 'nomeParte2'" (click)="setOrder('nomeParte2')">
+                      Nome
+                      <span [hidden] = "reverse" class="fa fa-caret-down"></span> <span [hidden] = "!reverse" class="fa fa-caret-up"></span></th>
+                    <th class="text-center fixed-width" colspan="2">Azioni</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let onePart2 of part2 | orderBy: order:reverse:true | filter:searchText">
+                      <td>{{ onePart2.id }}</td>
+                      <td>{{ onePart2.nomeParte2 }}</td>
+                      <td class="text-center fixed-width">
+                        <div class="btn-group">
+                          <a (click) = "openEditPart2(onePart2)" class="btn btn-outline-success"><i class="fas fa-edit"></i></a>
+                          <a (click) = "open(deletePart2)" class="btn btn-outline-danger text-danger"><i class="fas fa-trash-alt"></i></a>
+                        <ng-template #deletePart2 let-modal>
+                            <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">Elimina Parte2</h4>
+                          </div>
+                          <div class="modal-body">
+                            <span class="text-danger">Parte2 sara eliminato!</span>
+                            <p>Sei sicuro?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annulla</button>
+                            <button type="button" class="btn btn-danger" (click)="closeModal(onePart2)">Ok</button>
+                          </div>
+                        </ng-template>
+                        </div>
+                      </td>
+                    </tr>
+                </tbody>
+              </table>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

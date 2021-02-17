@@ -1,0 +1,44 @@
+<div class="container-fluid" *ngIf="isAdmin">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+          <h5 class="card-header text-white">Ruolo </h5>
+        <div class="card-body p-3">
+          <!-- <button class="btn btn-sm btn-outline-primary" (click)="openAddRole()" style="margin-bottom: 0.5cm;">Inserisci nuovo</button> -->
+            <table class="table table-bordered">
+                <thead class="alert alert-info bordered">
+                <tr>
+                    <th>Nome </th>
+                    <th>Descrizione</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let role of roles">
+                        <td>{{ role.name }}</td>
+                        <td>{{ role.description}}</td>
+                          <!-- <div class="btn-group">
+                          <a (click) = "openEditRole(role)" class="btn btn-outline-success"><i class="fas fa-edit"></i></a>
+                          <a (click) = "open(deleteRole)" class="btn btn-outline-danger text-danger"><i class="fas fa-trash-alt"></i></a>
+                          <ng-template #deleteRole let-modal>
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="modal-basic-title">Elimina Ruolo</h4>
+                            </div>
+                            <div class="modal-body">
+                              <span class="text-danger">Ruolo sarà eliminato!</span>
+                              <p>Sei sicuro?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annulla</button>
+                              <button type="button" class="btn btn-light" (click)="closeModal(role)">Ok</button>
+                            </div>
+                          </ng-template>
+                        </div> -->
+                    </tr>
+                </tbody>
+              </table>
+              <label style="color: red">Per le modifice contattare Amministratore</label>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
